@@ -1,0 +1,16 @@
+h4.flow-hint
+  i.fa.fa-list
+  | Outline
+
+.flow-sidebar-content
+  .flow-outline
+    table
+      tbody
+        // ko foreach:cells
+        tr.flow-pointer(data-bind='click:navigate')
+          td.flow-right(width='1')
+            span(data-bind="text:type, css:{'active':isSelected}")
+          td
+            pre(data-bind='text:input, attr:{title:input}')
+        // /ko
+

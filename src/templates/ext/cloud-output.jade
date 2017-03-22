@@ -1,0 +1,86 @@
+.flow-widget.flow-cloud-output
+  h3.flow-hint
+    i.fa.fa-cloud
+    span(data-bind='text:name')
+
+  h4 Cloud Status
+
+  div
+    // ko if:isHealthy
+    .flow-hud
+      i.fa.fa-check-circle.text-success
+      span.flow-small-caps Healthy
+    // /ko
+
+    // ko ifnot:isHealthy
+    .flow-hud
+      i.fa.fa-exclamation-circle.text-danger
+      span.flow-small-caps.text-danger Not healthy
+    // /ko
+
+    // ko if:hasConsensus
+    .flow-hud
+      i.fa.fa-check-circle.text-success
+      span.flow-small-caps Consensus
+    // /ko
+
+    // ko ifnot:hasConsensus
+    .flow-hud
+      i.fa.fa-exclamation-circle.text-danger
+      span.flow-small-caps text-danger No consensus
+    // /ko
+
+    // ko if:isLocked
+    .flow-hud
+      i.fa.fa-lock.text-muted
+      span.flow-small-caps Locked
+    // /ko
+
+    // ko ifnot:isLocked
+    .flow-hud
+      i.fa.fa-unlock.text-muted
+      span.flow-small-caps Not locked
+    // /ko
+
+  .flow-plot
+    table
+      thead
+        tr
+          th(style='text-align:left') Version
+          th Started
+          th Nodes (Used / All)
+
+      tbody
+        tr
+          td(data-bind='text:version')
+          td(data-bind='text:uptime')
+          td(data-bind='text:nodeCounts')
+  
+  h4 Nodes
+  .flow-right.flow-margin-after 
+    // ko ifnot:isExpanded
+    +button('Show advanced', 'angle-double-down', 'toggleExpansion')
+    // /ko
+    // ko if:isExpanded
+    +button('Hide advanced', 'angle-double-up', 'toggleExpansion')
+    // /ko
+
+  .flow-plot.flow-nowrap(data-bind='raw:nodes')
+
+  .flow-panel
+    button.flow-button(type='button' data-bind="click:toggleRefresh, css:{ 'flow-button-toggle':isLive }")
+      // ko if:isLive
+      i.fa.fa-refresh.fa-spin
+      | Stop
+      // /ko
+      // ko ifnot:isLive
+      i.fa.fa-refresh
+      | Refresh
+      // /ko
+
+
+
+
+
+
+

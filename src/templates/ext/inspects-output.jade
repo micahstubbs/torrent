@@ -1,0 +1,37 @@
+.flow-widget
+  h3.flow-hint
+    i.fa.fa-info-circle
+    | Data
+
+  // ko ifnot:hasTables
+  blockquote No data found.
+  // /ko
+
+  // ko if:hasTables
+  h4 Tables
+  table.flow-form
+    thead
+      tr
+        th(width='1') &nbsp;
+        th Name
+        th Actions
+    tbody
+      // ko foreach:tables
+      tr
+        td
+          i.fa.fa-info-circle
+        td
+          a(href='#' data-bind='text:label, click:grid')
+        td
+          button.flow-button(type='button' data-bind='click:inspect')
+            i.fa.fa-list
+            span Inspect
+          // ko if:canPlot
+          button.flow-button(type='button' data-bind='click:plot')
+            i.fa.fa-bar-chart
+            span Plot
+          // /ko
+      // /ko
+  // /ko
+  
+

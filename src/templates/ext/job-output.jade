@@ -1,0 +1,71 @@
+.flow-widget
+  h3.flow-hint
+    i.fa.fa-tasks
+    | Job
+  // ko if:exception
+  div(data-bind="template: { name:'flow-failure', data:exception }")
+  // /ko
+  table.flow-form
+    tbody
+      tr
+        th.flow-narrow Run Time
+        td.flow-wide(data-bind='text:runTime' style='font-size:120%')
+      tr
+        th.flow-narrow Remaining Time
+        td.flow-wide(data-bind='text:remainingTime' style='font-size:120%')
+      tr
+        th.flow-narrow Type
+        td.flow-wide(data-bind='text:destinationType')
+      tr
+        th.flow-narrow Key
+        td.flow-wide
+          // ko ifnot:canView
+          span(data-bind='text:destinationKey')
+          // /ko
+          // ko if:canView
+          .flow-hint
+            i.fa.fa-search
+            a(href='#' data-bind='text:destinationKey, click:view')
+          // /ko
+      tr
+        th.flow-narrow Description
+        td.flow-wide(data-bind='text:description')
+      tr
+        th.flow-narrow Status
+        td.flow-wide(data-bind='text:status')
+      tr
+        th.flow-narrow Progress
+        td.flow-wide
+          table
+            tbody
+              tr
+                td.flow-narrow(data-bind='text:progress')
+                td.flow-wide
+                  .progress(style='max-width:400px;height:8px;margin:5px 0')
+                    .progress-bar(data-bind="style:{background:statusColor,width:progress}")
+              tr
+                td.flow-narrow &nbsp;
+                td.flow-wide(data-bind='text:progressMessage')
+
+      // ko if:messages
+      tr
+        th.flow-narrow Messages
+        td.flow-wide
+          // ko foreach:messages
+          div
+            i.fa(style='margin-right:5px' data-bind='css:icon')
+            span(data-bind='text:message')
+          // /ko
+      // /ko
+
+      tr
+        th.flow-narrow Actions
+        td.flow-wide
+          button.flow-button(type='button' data-bind="click:view, visible:canView")
+            i.fa.fa-search
+            | View
+
+          button.flow-button(type='button' data-bind="click:cancel, visible:canCancel")
+            i.fa.fa-ban
+            | Cancel Job
+

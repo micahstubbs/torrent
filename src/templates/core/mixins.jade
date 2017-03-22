@@ -1,0 +1,31 @@
+mixin fa(icon)
+  i(class="fa fa-#{icon}")
+
+mixin subtitle(caption, icon)
+  h3.flow-hint
+    +fa(icon)
+    != caption
+
+mixin link(caption, action)
+  if caption[0] == '@'
+    a(href='#' data-bind="text:#{caption.substr(1)}, click:#{action}")
+  else
+    a(href='#' data-bind="click:#{action}")!=caption
+
+mixin command(caption, action, enable)
+  if enable
+    button.flow-button(type='button' data-bind="click:#{action}, enable:#{enable}")!=caption
+  else
+    button.flow-button(type='button' data-bind="click:#{action}")!=caption
+
+mixin button(caption, icon, action, enable)
+  if enable
+    button.flow-button(type='button' data-bind="click:#{action}, enable:#{enable}")
+      +fa(icon)
+      if caption
+        span!=caption
+  else
+    button.flow-button(type='button' data-bind="click:#{action}")
+      +fa(icon)
+      if caption
+        span!=caption

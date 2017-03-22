@@ -1,0 +1,27 @@
+h4.flow-hint
+  i.fa.fa-lightbulb-o
+  | Help
+
+.flow-help-toolbar
+  a.flow-help-toolbar-button(href='#' data-bind='click:goHome')
+    i.fa.fa-home
+  // ko if:canGoBack
+  a.flow-help-toolbar-button(href='#' data-bind='click:goBack')
+    i.fa.fa-arrow-left
+  // /ko
+  // ko ifnot:canGoBack
+  .flow-help-toolbar-button 
+    i.fa.fa-arrow-left
+  // /ko
+  // ko if:canGoForward
+  a.flow-help-toolbar-button(href='#' data-bind='click:goForward')
+    i.fa.fa-arrow-right
+  // /ko
+  // ko ifnot:canGoForward
+  .flow-help-toolbar-button
+    i.fa.fa-arrow-right
+  // /ko
+
+.flow-sidebar-content
+  .flow-help(data-bind='raw:content')
+

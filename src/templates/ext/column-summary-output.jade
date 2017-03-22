@@ -1,0 +1,33 @@
+.flow-widget
+  h3.flow-hint
+    i.fa.fa-pie-chart
+    | Summary: 
+    span(data-bind='text:label')
+
+  table.flow-form
+    tbody
+      tr 
+        th(width='1') Actions
+        td
+          +button('Impute', 'reply-all', 'impute')
+          +button('Inspect', 'list', 'inspect')
+
+  // ko if:characteristicsPlot
+  h4 Characteristics
+  .flow-plot(data-bind='raw:characteristicsPlot')
+  // /ko
+
+  // ko if:summaryPlot
+  h4 Summary
+  .flow-plot(data-bind='raw:summaryPlot')
+  // /ko
+
+  // ko if:distributionPlot
+  h4 Distribution
+  .flow-plot(data-bind='raw:distributionPlot')
+  // /ko
+
+  // ko if:domainPlot
+  h4 Domain (Max 1000 Levels)
+  .flow-plot(data-bind='raw:domainPlot')
+  // /ko

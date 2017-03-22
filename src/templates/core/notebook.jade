@@ -1,0 +1,159 @@
+// ko with:view
+h2.flow-print-title(data-bind='text:name')
+.flow-box
+  .flow-box-body(data-bind="css:{ 'flow-hide-sidebar':isSidebarHidden }")
+    .flow-box-notebook
+      .container-fluid.flow-repl(data-bind="css:{ 'flow-hide-inputs':areInputsHidden, 'flow-hide-outputs':areOutputsHidden }, template:{ name:templateOf, foreach:cells }")
+    .flow-box-sidebar
+      // ko with:sidebar
+      include sidebar.jade
+      // /ko
+  .flow-box-footer
+    // ko with:status
+    include status.jade
+    // /ko
+  //- This is at the bottom so that menus are not clipped.
+  //- Could have been done using CSS z-index, but those can get hairy.
+  .flow-box-header
+    include navigation.jade
+  .flow-box-blocker(data-bind="visible:isRunningAll")
+    .flow-playbar
+      div
+        span(data-bind='text:runningCaption')
+        span.flow-playbar-stop(data-bind='click:stopRunningAll')
+          i.fa.fa-stop
+          span STOP
+      .flow-playbar-progress
+        .flow-playbar-progress-bar(data-bind="style:{width:runningPercent}")
+      div(style='font-size:80%' data-bind="text:runningCellInput")
+
+//- 
+//- Dialogs
+//-
+
+// ko with:dialogs
+// ko if:dialog
+div(data-bind='template:{name:template, data:dialog}')
+// /ko
+// /ko
+
+include keyboard-help-dialog.jade
+include about-dialog.jade
+
+// /ko
+
+//- 
+//- Core Templates
+//-
+
+script(type="text/html" id="flow-keyboard-shortcut-table")
+  include keyboard-help-table.jade
+
+script(type="text/html" id="flow-toolbar")
+  include toolbar.jade
+
+script(type="text/html" id="flow-navbar")
+  include navbar.jade
+
+script(type="text/html" id="flow-status")
+  include status.jade
+
+script(type="text/html" id="flow-sidebar")
+  include sidebar.jade
+
+script(type="text/html" id="flow-help")
+  include help.jade
+
+script(type="text/html" id="flow-outline")
+  include outline.jade
+
+script(type="text/html" id="flow-browser")
+  include browser.jade
+
+script(type="text/html" id="flow-clipboard")
+  include clipboard.jade
+
+script(type="text/html" id="flow-clips")
+  include clips.jade
+
+script(type="text/html" id="flow-h1")
+  include h1.jade
+
+script(type="text/html" id="flow-h2")
+  include h2.jade
+
+script(type="text/html" id="flow-h3")
+  include h3.jade
+
+script(type="text/html" id="flow-h4")
+  include h4.jade
+
+script(type="text/html" id="flow-h5")
+  include h5.jade
+
+script(type="text/html" id="flow-h6")
+  include h6.jade
+
+script(type="text/html" id="flow-html")
+  include html.jade
+
+script(type="text/html" id="flow-object")
+  include object.jade
+
+script(type="text/html" id="flow-object-part")
+  include object-part.jade
+
+script(type="text/html" id="flow-raw")
+  include raw.jade
+
+script(type="text/html" id="flow-json")
+  include json.jade
+
+script(type="text/html" id="flow-dom")
+  include dom.jade
+
+script(type="text/html" id="flow-form-text")
+  include form-text.jade
+
+script(type="text/html" id="flow-form-html")
+  include form-html.jade
+
+script(type="text/html" id="flow-form-markdown")
+  include form-markdown.jade
+
+script(type="text/html" id="flow-form-checkbox")
+  include form-checkbox.jade
+
+script(type="text/html" id="flow-form-dropdown")
+  include form-dropdown.jade
+
+script(type="text/html" id="flow-form-listbox")
+  include form-listbox.jade
+
+script(type="text/html" id="flow-form-textbox")
+  include form-textbox.jade
+
+script(type="text/html" id="flow-form-textarea")
+  include form-textarea.jade
+
+script(type="text/html" id="flow-form-button")
+  include form-button.jade
+
+script(type="text/html" id="flow-form")
+  include form.jade
+
+script(type="text/html" id="flow-failure")
+  include failure.jade
+
+script(type="text/html" id="flow-cell")
+  include cell.jade
+//- 
+//- Dialog Templates
+//-
+
+script(type="text/html" id="flow-alert-dialog")
+  include alert-dialog.jade
+
+script(type="text/html" id="flow-confirm-dialog")
+  include confirm-dialog.jade
+

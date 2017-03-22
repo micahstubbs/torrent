@@ -1,0 +1,823 @@
+@import 'nib'
+// @require 'variables'
+tomorrow-current-line = #efefef
+tomorrow-selection = #d6d6d6
+tomorrow-foreground = #4d4d4c
+tomorrow-comment = #8e908c
+tomorrow-red = #c82829
+tomorrow-orange = #f5871f
+tomorrow-yellow = #eab700
+tomorrow-green = #718c00
+tomorrow-aqua = #3e999f
+tomorrow-blue = #4271ae
+tomorrow-purple = #8959a8
+flow-color-yellow = #FAF185
+flow-color-yellow-dk = #F6E76A
+flow-color-yellow-lt = #FBF3B5
+flow-color-orange = #F5A623
+flow-color-link = #428bca
+
+normal()
+  font-weight normal !important
+
+monospace()
+  font-family 'Source Code Pro', Menlo, Monaco, Consolas, "Courier New", monospace !important
+
+smallcaps()
+  normal()
+  text-transform uppercase
+  font-size 10px
+  letter-spacing 1px
+
+block()
+  position absolute
+  display block
+
+text-block(height, right=0, left=0)
+  block()
+  left left
+  right right
+  height height
+  line-height height
+
+size(width, height=width)
+  width width
+  height height
+
+// These mixins turn elements into absolutely position block elements.
+// The arguments are always in CSS order: top, right, bottom, left
+//    unless they have widths or heights defined, in which case those
+//    arguments go first.
+dock(top=0, right=0, bottom=0, left=0)
+  block()
+  top top
+  right right
+  bottom bottom
+  left left
+
+dock-top(height, top=0, right=0, left=0)
+  block()
+  top top
+  right right
+  left left
+  height height
+
+dock-bottom(height, right=0, bottom=0, left=0)
+  block()
+  right right
+  bottom bottom
+  left left
+  height height
+
+dock-left(width, top=0, bottom=0, left=0)
+  block()
+  top top
+  bottom bottom
+  left left
+  width width
+
+dock-right(width, top=0, right=0, bottom=0)
+  block()
+  top top
+  right right
+  bottom bottom
+  width width
+
+dock-top-left(width, height, top=0, left=0)
+  block()
+  top top
+  left left
+  size(width, height)
+
+dock-bottom-left(width, height, bottom=0, left=0)
+  block()
+  bottom bottom
+  left left
+  size(width, height)
+
+dock-top-right(width, height, top=0, right=0)
+  block()
+  top top
+  right right
+  size(width, height)
+
+dock-bottom-right(width, height, right=0, bottom=0)
+  block()
+  right right
+  bottom bottom
+  size(width, height)
+
+flow-box-padding-left = 50px
+flow-box-padding-right = 0px
+flow-header-height = 125px
+flow-footer-height = 30px
+flow-sidebar-width = 300px
+flow-sidebar-header-height = 31px
+
+//TODO table.table is used in frame output
+//TODO alert is used in flow-failure
+
+// 
+// Bootstrap overrides
+// 
+
+body
+  font-family Lato, 'Source Sans Pro', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif
+  color #000
+  normal()
+
+
+h1, h2, h3, h4, blockquote, label
+  normal()
+
+code, kbd, pre, samp
+  monospace()
+
+kbd
+  color #333
+  -webkit-box-shadow none
+  box-shadow none
+  background-color #fff
+  border 1px solid #ccc
+  padding 1px 4px
+
+pre
+  border none
+  border-radius 0
+  background #fafafa
+
+textarea
+  &:focus
+    outline none
+
+input
+  &:focus
+    outline none
+
+label
+  input[type="radio"]
+    margin-right 6px
+  input[type="checkbox"]
+    margin-right 6px
+
+.flow-print-title
+  display none
+
+.container-fluid
+  padding-left 0
+  padding-right 0
+
+.flow-box-notebook
+  .container-fluid
+    padding 10px 20px 10px flow-box-padding-left
+
+.navbar-default
+  background none
+  border none
+  margin-bottom 0
+  .navbar-nav
+    > .active
+      > a, > a:hover, > a:focus
+        background-color flow-color-yellow
+    > .open
+      > a, > a:hover, > a:focus
+        background-color flow-color-yellow
+
+.dropdown-menu
+  min-width 230px
+
+.flow-box
+  dock()
+  .flow-box-header
+    dock-top(flow-header-height, 0, flow-box-padding-right, flow-box-padding-left)
+    overflow visible
+    box-sizing border-box
+    border-bottom 1px solid #ddd
+  .flow-box-body
+    dock(flow-header-height, 0, flow-footer-height, 0)
+  .flow-box-notebook
+    dock(0, flow-sidebar-width, 0, 0)
+    overflow auto
+  .flow-box-sidebar
+    dock-right(flow-sidebar-width)
+    box-sizing border-box
+    border-left 1px solid #ddd
+  .flow-box-footer
+    dock-bottom(flow-footer-height, flow-box-padding-right, 0, flow-box-padding-left)
+    overflow hidden
+    line-height flow-footer-height
+    box-sizing border-box
+    border-top 1px solid #ddd
+  .flow-box-body
+    &.flow-hide-sidebar
+      .flow-box-sidebar
+        display none
+      .flow-box-notebook
+        right 0
+  .flow-box-blocker
+    dock()
+    background rgba(0, 0, 0, 0.1)
+
+.flow-playbar
+  monospace()
+  dock-bottom(100px, 0, flow-footer-height, 0)
+  color white
+  padding 10px 50px 0 50px
+  background rgba(0, 0, 0, 0.7)
+  overflow ellipsis
+
+.flow-playbar-stop
+  float right
+  cursor pointer
+  .fa
+    margin-right 5px
+  &:hover
+    color red
+
+.flow-playbar-progress
+  position relative
+  margin 5px 0
+  height 8px
+  border-radius 10px
+  border 1px solid white
+.flow-playbar-progress-bar
+  dock-left(0)
+  background #fff
+  border-radius 10px
+
+.navbar-brand
+  background url('../img/h2o-flow.png') 15px center no-repeat
+  width 160px
+  margin-left -15px
+
+.h2o-logo
+  background url('../img/h2o.png') right 9px no-repeat
+  width 40px
+
+.table
+  thead
+    tr
+      th
+        border-bottom 1px solid #ccc
+
+th
+  normal()
+  font-style italic
+
+.alert
+  border-radius 0
+
+.red
+  color: tomorrow-red
+
+.orange
+  color: tomorrow-orange
+
+.strong
+  font-weight bold
+
+.bg-yellow
+  background-color flow-color-yellow
+
+//
+//
+//
+
+.flow-navbar
+  border-top 5px solid flow-color-yellow
+
+.flow-header
+  border-top 5px solid flow-color-yellow
+  padding 20px 0  
+
+.flow-cell
+  position relative
+  padding-left 5px
+  border-left 3px solid transparent
+  .flow-cell-time
+    color #999
+    font-size 80%
+    text-align right
+  .flow-cell-type
+    display none
+    position absolute
+    width 25px
+    left -28px
+    top 0
+    text-transform uppercase
+    font-size 10px
+    background flow-color-yellow
+    padding 1px 3px
+    text-align center
+  .flow-cell-code
+    textarea
+      color #333
+      width 100%
+      max-height 500px
+      border none
+      border-left 2px solid tomorrow-orange
+      monospace()
+      background url(unquote('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAIAAAAmkwkpAAAAKElEQVQImWN89+4dAwODoKAgAwMDE5z1/v17xv///0NYUBkIS1BQEAB7Uw7Oc/qzUwAAAABJRU5ErkJggg=='))
+      padding 5px 10px
+    .flow-cell-actions
+      width 20px
+      text-align right
+      vertical-align top
+      .fa-paperclip:hover
+        color flow-color-link
+    &.flow-cell-has-output
+      textarea
+        border-left 2px solid tomorrow-blue
+  &.flow-cell-selected
+    border-color flow-color-yellow
+    .flow-cell-type
+      display block
+  &.flow-cell-active
+    border-color flow-color-orange
+    .flow-cell-type
+      background flow-color-orange
+      color #fff
+    .flow-cell-code
+      textarea
+        background: url(unquote('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAIAAAAmkwkpAAAAJklEQVQImT2JwREAIAiAaGPbOW0MenjJiwPqhJ+lAsDNTbf+jKkPzF8mz4scIeAAAAAASUVORK5CYII='))
+  &.flow-cell-busy
+    border-color tomorrow-aqua
+    .flow-cell-type
+      background tomorrow-aqua
+      color #fff
+  &.flow-cell-error
+    border-color red
+    .flow-cell-type
+      background red
+      color #fff
+
+.flow-hide-inputs
+  .flow-cell-input
+    display none
+
+.flow-hide-outputs
+  .flow-cell-code
+    .flow-cell-output
+      display none
+
+.flow-cell-code
+  .flow-hide-output
+    display none
+  
+// 
+// Styles that apply only to html cells 
+// 
+
+.flow-html-output
+  h1, h2, h3, blockquote
+    normal()
+
+.flow-raw-output
+  pre
+    background inherit
+
+.flow-object
+  margin-left 20px
+  strong
+    font-weight normal
+    color tomorrow-orange
+
+.flow-hide
+  display none
+
+.flow-unhide
+  tr.flow-hide
+    display table-row
+
+.flow-invisible
+  visibility hidden
+
+.flow-widget
+  padding 0 10px
+  margin-bottom 40px
+
+  h4
+    text-transform uppercase
+    font-size 75%
+    letter-spacing 3px
+    border-bottom 1px dotted #ccc
+    margin-top 20px
+
+.flow-well
+  margin 10px 0
+  padding 10px
+  border 1px dotted #ccc
+
+.flow-panel
+  margin-top 20px
+  padding 10px 0
+
+.flow-margin-after
+  margin-bottom 10px
+
+.flow-monospace
+  monospace()
+
+.flow-monospace-label
+  font-size 85%
+  font-weight bold
+  monospace()
+
+.flow-pointer
+  cursor pointer
+
+table
+  &.flow-form
+    width 100%
+    th, td
+      padding 2px 5px
+      vertical-align top
+    th
+      line-height 20px
+      &:first-child
+        text-align right
+    tr.flow-actions
+      th, td
+        padding-top 5px
+        border-top 1px dotted #ccc
+  &.flow-form-ruled
+    th, td
+      border-bottom 1px solid #eee
+    tr:first-child
+      border-top 1px solid #eee
+
+.flow-narrow
+  white-space nowrap
+
+.flow-wide
+  width 99%
+
+// TODO BUG if the .fa is the only child, both these
+//  styles get applied. Need to wrap all captions
+//  in a span for this to work correctly.
+.flow-hint
+  > .fa:last-child
+    margin-left 5px
+  > .fa:first-child
+    margin-right 5px
+
+.flow-frame-output
+  .flow-bg-gray
+    background-color #f5f5f5
+
+.flow-small
+  font-size 85%
+
+.flow-small-caps
+  smallcaps()
+
+.flow-left
+  text-align left
+
+.flow-right, .rt
+  text-align right
+
+.flow-center
+  text-align center
+
+.flow-hud
+  display inline-block
+  margin-right 15px
+  .fa
+    margin-right 5px
+
+.flow-button
+  cursor pointer
+  border-radius 12px
+  border 1px solid #ccc
+  padding 2px 12px
+  font-size: 85%
+  background-color: #fff
+  white-space nowrap
+  &:hover
+    background-color #eee
+    border-color #aaa
+  &.flow-button-toggle
+    color #fff
+    background-color #777
+    border-color #777
+    &:hover
+      background-color #333
+      border-color #333
+  > .fa:first-child
+    margin-right 5px
+  > .fa:last-child
+    margin-left 5px
+  &:disabled
+    color #bbb
+    &:hover
+      background-color #fff
+      border-color #ccc
+
+//TODO replace with .flow-form input[type=text]
+.flow-textbox
+  width 100%
+  border none
+  border-bottom 1px solid #ccc
+  &:focus
+    border-bottom-color #000
+
+.flow-textarea
+  width 100%
+  border 1px solid #ccc
+
+.flow-toolbar-button
+  padding 2px 7px
+  border-radius 2px
+
+.flow-titlebar
+  height 32px
+  span
+    font-size 120%
+    normal()
+  input
+    width 90%
+  .fa
+    margin-left 5px
+  .fa-pencil
+    display none
+  &:hover
+    span
+      color flow-color-link
+    .fa-pencil
+      display inline
+  
+
+
+//TODO move to failure.styl
+.flow-failure
+  border-top 1px dotted #ccc
+  padding 15px
+  margin 10px 0 20px 0
+  color red
+
+.flow-nowrap
+  th, td
+    white-space nowrap
+
+.flow-plot
+  monospace()
+  overflow visible
+  margin-bottom 20px
+  table
+    // margin 10px 0 20px 0
+    font-size 85%
+    tr:nth-child(odd)
+      background-color #eee
+    td, th
+      padding 2px 5px
+
+    &.flow-confusion-matrix
+      th
+        font-style normal
+        font-weight bold
+      tr:nth-child(odd)
+        background-color inherit
+      td
+        border 1px dotted #999
+
+  .lz-table > thead > tr
+    border-bottom 1px solid #ccc
+
+  // .lz-table > tbody > tr > td:hover
+  //   outline 1px solid black
+  //   cursor pointer
+  //   color white
+  //   background black
+
+  // Nasty hacks - FIXME
+  .lz-tooltip
+    table
+      margin 0 !important
+      font-size 100% !important
+      tr:nth-child(odd)
+        background-color inherit !important
+      td, th
+        padding 0px 4px !important
+
+  table.flow-matrix
+    margin 0
+    tr
+      background-color inherit !important
+    td
+      white-space nowrap
+      border-left 1px solid #aaa
+      border-top 1px solid #aaa
+      &:first-child
+        border-left none
+    tr:first-child
+      td
+        border-top none
+  .plot
+    .axis
+      font-size 10px
+      path, line
+        fill none
+        stroke #999
+        shape-rendering crispEdges
+    .bar
+      fill gray
+
+  .flow-legend
+    font-size 85%
+  .flow-legend-item
+    margin-right 15px
+  .flow-legend-swatch
+    display inline-block
+    width 10px
+    height 10px
+    margin-right 3px
+
+.flow-sidebar
+  dock()
+  .flow-sidebar-header
+    dock-top(flow-sidebar-header-height + 2px)
+    overflow hidden
+    padding 10px 10px 0 10px
+    .flow-tabs
+      border-bottom 1px solid flow-color-yellow-dk
+    .flow-tab
+      display inline-block
+      height flow-sidebar-header-height - 10px
+      line-height flow-sidebar-header-height - 10px
+      width 25%
+      text-align center
+      smallcaps()
+      &:hover
+        background #f1f2f3
+      &.active
+        color black
+        background flow-color-yellow
+  .flow-sidebar-body
+    dock(flow-sidebar-header-height + 2px)
+    > div
+      padding 10px
+
+    .flow-sidebar-content
+      > div
+        padding 10px
+      overflow auto
+      dock(45px)
+
+.flow-browser
+  p
+    padding 10px
+    border 1px dashed #ddd
+  table
+    width 100%
+  tr:hover
+    background #f1f2f3
+  td
+    border-bottom 1px solid #ddd
+    padding 1px 3px
+    vertical-align top
+  .fa-trash-o:hover
+    color red
+
+.flow-clipboard, .flow-outline
+  p
+    padding 10px
+    border 1px dashed #ddd
+  table
+    width 100%
+  tr:hover
+    background #f1f2f3
+  td
+    border-bottom 1px solid #ddd
+    padding 1px 3px
+    vertical-align top
+    span
+      background flow-color-yellow
+      text-transform uppercase
+      font-size 10px
+      padding 1px 3px
+      &.active
+        background flow-color-orange
+        color #fff
+  pre
+    font-size 85%
+    background none
+    padding 0
+    margin 0
+    max-width 200px
+    overflow ellipsis
+    &:hover
+      color flow-color-link
+  .fa-play-circle:hover
+    color flow-color-link
+  .fa-trash-o:hover
+    color red
+
+.flow-aside
+  font-size 80%
+  text-transform uppercase
+  color #999
+  border-left 1px dotted #ccc
+
+.flow-help
+  mark
+    display inline-block
+    font-size 10px
+    text-transform uppercase
+    padding 0 6px
+    background flow-color-yellow
+  ul
+    padding 0 0 0 20px
+  h5
+    normal()
+    font-size 18px
+    color #999
+  h6
+    font-size 10px
+    text-transform uppercase
+    border-bottom 1px dotted #aaa
+    margin-top 25px
+  .fa
+    margin-right 5px
+  small
+    color #999
+  img
+    width auto
+    max-width 100%
+    height auto
+
+.flow-help-toolbar
+  position absolute
+  top 17px
+  right 10px
+
+  .flow-help-toolbar-button
+    display inline-block
+    margin-left 10px
+    color #ccc
+
+  a.flow-help-toolbar-button
+    cursor pointer
+    color #999
+    &:hover
+      color #666
+
+.flow-outline
+  pre
+    max-width 240px
+
+.flow-status-bar
+  padding-right 10px
+  font-size 80%
+  table
+    width 100%
+  td
+    padding 0 5px
+  .fa-cog
+    display none
+  &.busy
+    background flow-color-yellow
+    .fa-cog
+      display inline
+    .fa-circle
+      display none
+
+
+.twitter-typeahead
+  width 97%
+
+.tt-dropdown-menu
+  background #fff
+  border 1px solid #ccc
+  width 100%
+  box-shadow 0 5px 10px rgba(0,0,0,.2)
+
+.tt-suggestion
+  padding 3px 10px
+  line-height 24px
+  overflow ellipsis
+  &.tt-cursor
+    background-color flow-color-yellow
+  p
+    margin 0
+
+@media print
+  .flow-print-title
+    display block
+  .flow-box
+    position static
+    .flow-box-body
+      position static
+      .flow-box-notebook
+        position static
+        .flow-cell-input
+          display none
+      .flow-box-sidebar
+        display none
+    .flow-box-header
+      display none
+    .flow-box-footer
+      display none
+
+.intercom-launcher-preview
+  display none !important

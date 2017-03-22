@@ -1,0 +1,142 @@
+.flow-widget
+  h3.flow-hint
+    i.fa.fa-table
+    | Create a Frame
+
+  table.flow-form
+    tbody
+      tr
+        th
+          label Name
+        td
+          input.flow-textbox(type='text' data-bind="value:key")
+        td The name of the frame.
+      tr
+        th
+          label Rows
+        td
+          input.flow-textbox(type='text' data-bind="value:rows")
+        td Number of rows
+          
+      tr
+        th
+          label Columns
+        td
+          input.flow-textbox(type='text' data-bind="value:columns")
+        td Number of data columns (in addition to the first response column)
+          
+      tr
+        th
+          label Randomize
+        td
+          input(type='checkbox' data-bind="checked:randomize")
+        td Whether frame should be randomized
+
+      tr
+        th
+          label Seed
+        td
+          input.flow-textbox(type='text' data-bind="value:seed")
+        td Random number seed
+
+      tr
+        th
+          label Seed for Column Types
+        td
+          input.flow-textbox(type='text' data-bind="value:seed_for_column_types")
+        td Random number seed for column types (-1 to use the main seed)
+          
+      tr
+        th
+          label Value
+        td
+          input.flow-textbox(type='text' data-bind="value:value")
+        td Constant value (for randomize=false)
+
+      tr
+        th
+          label Factors
+        td
+          input.flow-textbox(type='text' data-bind="value:factors")
+        td Factor levels for categorical variables
+          
+      tr
+        th
+          label Categorical Fraction
+        td
+          input.flow-textbox(type='text' data-bind="value:categoricalFraction")
+        td Fraction of categorical columns (for randomize=true)
+          
+      tr
+        th
+          label Integer Fraction
+        td
+          input.flow-textbox(type='text' data-bind="value:integerFraction")
+        td Fraction of integer columns (for randomize=true)
+          
+      tr
+        th
+          label Binary Fraction
+        td
+          input.flow-textbox(type='text' data-bind="value:binaryFraction")
+        td Fraction of binary columns (for randomize=true)
+
+      tr
+        th
+          label Binary Ones Fraction
+        td
+          input.flow-textbox(type='text' data-bind="value:binaryOnesFraction")
+        td Fraction of 1's in binary columns
+
+      tr
+        th
+          label Time Fraction
+        td
+          input.flow-textbox(type='text' data-bind="value:timeFraction")
+        td Fraction of date/time columns (for randomize=true)
+
+      tr
+        th
+          label String Fraction
+        td
+          input.flow-textbox(type='text' data-bind="value:stringFraction")
+        td Fraction of string columns (for randomize=true)
+          
+      tr
+        th
+          label Missing Fraction
+        td
+          input.flow-textbox(type='text' data-bind="value:missingFraction")
+        td Fraction of missing values
+          
+      tr
+        th
+          label Response Factors
+        td
+          input.flow-textbox(type='text' data-bind="value:responseFactors")
+        td Number of factor levels of the first column (1=real, 2=binomial, N=multinomial)
+          
+      tr
+        th
+          label Real Range
+        td
+          input.flow-textbox(type='text' data-bind="value:realRange")
+        td Range for real variables (-range ... range)
+          
+      tr
+        th
+          label Integer Range
+        td
+          input.flow-textbox(type='text' data-bind="value:integerRange")
+        td Range for integer variables (-range ... range)
+
+      tr
+        th
+          label Has Response?
+        td
+          input(type='checkbox' data-bind="checked:hasResponse")
+        td Whether an additional response column should be generated
+
+        
+  .flow-panel
+    +button('Create', 'table', 'createFrame')

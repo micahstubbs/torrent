@@ -1,0 +1,102 @@
+.flow-widget
+  h3.flow-hint
+    i.fa.fa-cube
+    | Model
+
+  // ko with:output
+
+  .flow-margin-after
+    table.flow-form
+      tbody
+        tr
+          th.flow-narrow Model ID:
+          td.flow-wide(data-bind='text:key.name')
+        tr
+          th.flow-narrow Algorithm:
+          td.flow-wide(data-bind='text:algo')
+        tr 
+          th(width='1') Actions:
+          td
+            button.flow-button(type='button' data-bind="click:$parent.toggleRefresh, css:{ 'flow-button-toggle':$parent.isLive }")
+              // ko if:$parent.isLive
+              i.fa.fa-refresh.fa-spin
+              | Stop
+              // /ko
+              // ko ifnot:$parent.isLive
+              i.fa.fa-refresh
+              | Refresh
+              // /ko
+
+            +button('Predict&hellip;', 'bolt', 'predict')
+            //- +button('Clone this model&hellip;', 'copy', 'cloneModel')
+            +button('Download POJO', 'download', 'downloadPojo')
+            +button('Download Model Deployment Package', 'download', 'downloadMojo')
+            +button('Export', 'save', 'exportModel')
+            +button('Inspect', 'list', 'inspect')
+            +button('Delete', 'trash-o', 'deleteModel')
+      
+  h4(data-bind='collapse:true') Model Parameters
+  div(data-bind="css:{ 'flow-unhide':isExpanded }")
+    .flow-right.flow-margin-after 
+      // ko ifnot:isExpanded
+      +button('Show all parameters', 'angle-double-down', 'toggle')
+      // /ko
+      // ko if:isExpanded
+      +button('Show modified parameters', 'angle-double-up', 'toggle')
+      // /ko
+    table.flow-form.flow-form-ruled
+      thead
+        tr
+          th Parameter
+          th Value
+          th Description
+      tbody
+        // ko foreach:inputParameters
+        tr(data-bind="css:{ 'flow-hide':isModified }")
+          th(data-bind='text:label')
+          td(data-bind='text:value')
+          td(data-bind='text:help')
+        // /ko
+
+  
+  // ko foreach:plots
+  h4(data-bind='text:title, collapse:isCollapsed')
+  div
+    table(style='margin:10px 0 20px 0')
+      tbody
+        tr
+          td(style='vertical-align:top')
+            div
+              .flow-plot(data-bind='raw:plot')
+            // ko with:controls
+            div
+              table
+                tbody
+                  tr
+                    td.flow-monospace-label Threshold:
+                    td.flow-monospace-label Criterion:
+                  tr
+                    td
+                      select(data-bind="options:thresholds, optionsText:'value', value:threshold, optionsCaption: 'Choose...'")
+                    td
+                      select(data-bind="options:criteria, optionsText:'value', value:criterion, optionsCaption: 'Choose...'")
+            // /ko
+
+          // ko if:frame
+          td(style='vertical-align:top; padding-left:20px')
+            div
+              .flow-monospace-label Selected mark(s):
+            .flow-plot(data-bind='raw:frame')
+          // /ko
+  // /ko
+
+  h4(data-bind='collapse:false') Preview POJO
+  div
+    // ko ifnot:isPojoLoaded
+    +button('Preview POJO', 'code', 'previewPojo')
+    // /ko
+    // ko if:isPojoLoaded
+    div(data-bind='html:pojoPreview')
+    // /ko
+
+  // /ko

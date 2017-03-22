@@ -1,0 +1,54 @@
+.flow-widget.flow-frame-output
+  h3.flow-hint
+    i.fa.fa-table
+    span(data-bind="text:key")
+
+  .flow-margin-after
+    table.flow-form
+      tbody
+        tr 
+          th(width='1') Actions:
+          td
+            +button('View Data', 'th', 'inspectData')
+            +button('Split...', 'scissors', 'splitFrame')
+            +button('Build Model&hellip;', 'cube', 'createModel')
+            +button('Predict', 'bolt', 'predict')
+            +button('Download', 'cloud-download', 'download')
+            +button('Export', 'save', 'exportFrame')
+          td.flow-right
+            +button('Delete', 'trash-o', 'deleteFrame')
+
+  .flow-margin-after
+    table.flow-form.flow-form-ruled
+      thead
+        tr
+          th &nbsp;
+          th Rows
+          th Columns
+          th Compressed Size
+      tbody
+        tr
+          td &nbsp;
+          td(data-bind="text:rowCount")
+          td(data-bind="text:columnCount")
+          td(data-bind="text:size")
+
+  h4(data-bind='collapse:false') Column Summaries
+  div
+    // input.flow-textbox(type='text' placeholder='Search by column name...' data-bind="value:columnNameSearchTerm, valueUpdate:'afterkeydown'")
+    .flow-plot(data-bind='raw:grid')
+    div
+      button.flow-button(type='button' data-bind="click:goToPreviousPage, enable:canGoToPreviousPage")
+        i.fa.fa-arrow-left
+        span Previous 20 Columns
+      button.flow-button(type='button' data-bind="click:goToNextPage, enable:canGoToNextPage")
+        i.fa.fa-arrow-right
+        span Next 20 Columns
+
+  h4(data-bind='collapse:true') Chunk Compression Summary
+  .flow-plot(data-bind='raw:chunkSummary')
+
+  h4(data-bind='collapse:true') Frame Distribution Summary
+  .flow-plot(data-bind='raw:distributionSummary')
+
+

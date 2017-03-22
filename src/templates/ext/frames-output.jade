@@ -1,0 +1,59 @@
+.flow-widget
+  h3.flow-hint
+    i.fa.fa-table
+    | Frames
+
+  // ko ifnot:hasFrames
+  blockquote Your H<sub>2</sub>O cloud has no frames.
+  .flow-panel
+    button.flow-button(type='button' data-bind='click:importFiles')
+      i.fa.fa-files-o
+      | Import files&hellip;
+    
+  // /ko
+
+  // ko if:hasFrames
+  table.flow-form
+    thead
+      tr
+        th(width='1' style='font-size:inherit')
+          input(type='checkbox' title='Select or deselect all' data-bind="checked:checkAllFrames")
+        th(width='1') Type
+        th ID
+        th.flow-right(width='1') Rows
+        th.flow-right(width='1') Columns
+        th.flow-right(width='1') Size
+    tbody
+      // ko foreach:frameViews
+      tr
+        td
+          input(type='checkbox' data-bind="checked:isChecked")
+        td
+          // ko if:isText
+          i.fa.fa-columns
+          // /ko
+          // ko ifnot:isText
+          i.fa.fa-table
+          // /ko
+        td
+          p
+            a(href='#' data-bind='text:key, click:view')
+          // ko if:isText
+          p
+            +button('Parse&hellip;', 'cog', 'view')
+          // /ko
+          // ko ifnot:isText
+          p
+            +button('Build Model&hellip;', 'cube', 'createModel')
+            +button('Predict&hellip;', 'bolt', 'predict')
+            +button('Inspect', 'list', 'inspect')
+          // /ko
+        td.flow-right(data-bind='text:rowCount')
+        td.flow-right(data-bind='text:columnCount')
+        td.flow-right(data-bind='text:size')
+      // /ko
+  .flow-panel
+    +button('Predict on selected frames&hellip;', 'bolt', 'predictOnFrames', 'hasSelectedFrames')
+    +button('Delete selected frames', 'trash-o', 'deleteFrames', 'hasSelectedFrames')
+  // /ko
+
