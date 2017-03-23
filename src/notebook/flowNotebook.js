@@ -50,7 +50,7 @@ export default function flowNotebook(_) {
   _.lastDeletedCell = null;
   _.areInputsHidden = Flow.Dataflow.signal(false);
   _.areOutputsHidden = Flow.Dataflow.signal(false);
-  _.isSidebarHidden = Flow.Dataflow.signal(false);
+  _.isSidebarHidden = Flow.Dataflow.signal(true);
   _.isRunningAll = Flow.Dataflow.signal(false);
   _.runningCaption = Flow.Dataflow.signal('Running');
   _.runningPercent = Flow.Dataflow.signal('0%');
