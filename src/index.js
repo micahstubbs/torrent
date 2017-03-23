@@ -66,4 +66,5 @@ import { flow } from './flow/flow';
     });
   }.call(this));
   routines();
+  document.title = 'Torrent';
 }).call(this);
