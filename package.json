@@ -10,7 +10,7 @@
     "start":"npm install && bower install && gulp",
     "build-templates":"gulp",
     "build-js":"rollup -c  -- src/index.js && cp build/js/flow.js /Users/m/workspace/h2o-3/h2o-web/src/main/resources/www/flow/js/ && cp build/js/flow.js /Users/m/workspace/h2o-3/h2o-web/lib/h2o-flow/build/js/",
-    "build-no-libs": "gulp build-templates && gulp build-styles && rollup -c -- src/index.js && cp -r build/ /Users/m/workspace/h2o-3/h2o-web/src/main/resources/www/flow/ && cp -r build/ /Users/m/workspace/h2o-3/h2o-web/lib/h2o-flow/build/",
+    "build-no-libs": "gulp build-templates build-styles && rollup -c -- src/index.js && cp -r build/ /Users/m/workspace/h2o-3/h2o-web/src/main/resources/www/flow/ && cp -r build/ /Users/m/workspace/h2o-3/h2o-web/lib/h2o-flow/build/",
     "build": "gulp && rollup -c -- src/index.js && cp -r build/ /Users/m/workspace/h2o-3/h2o-web/src/main/resources/www/flow/ && cp -r build/ /Users/m/workspace/h2o-3/h2o-web/lib/h2o-flow/build/",
     "build-tests":"rollup -c tests.rollup.js -- test/index.js",
     "lint":"eslint test --fix",
