@@ -1,5 +1,5 @@
 {  
-  "name":"torrent",
+  "name":"h2o-torrent",
   "version":"0.1.0",
   "description":"an interactive code notebook for the h2o-3 machine learning platform",
   "main":"index.js",
@@ -22,6 +22,7 @@
   "keywords":[  
     "H2O",
     "Machine Learning",
+    "AI",
     "code",
     "notebook",
     "JavaScript",
