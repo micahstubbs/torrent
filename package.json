@@ -1,7 +1,7 @@
 {  
-  "name":"h2o-flow",
-  "version":"0.0.0",
-  "description":"Interactive computational environment for H2O",
+  "name":"torrent",
+  "version":"0.1.0",
+  "description":"an interactive code notebook for the h2o-3 machine learning platform",
   "main":"index.js",
   "directories":{  
     "test":"test"
@@ -13,37 +13,30 @@
     "build-no-libs": "gulp build-templates build-styles && rollup -c -- src/index.js && cp -r build/ /Users/m/workspace/h2o-3/h2o-web/src/main/resources/www/flow/ && cp -r build/ /Users/m/workspace/h2o-3/h2o-web/lib/h2o-flow/build/",
     "build": "gulp && rollup -c -- src/index.js && cp -r build/ /Users/m/workspace/h2o-3/h2o-web/src/main/resources/www/flow/ && cp -r build/ /Users/m/workspace/h2o-3/h2o-web/lib/h2o-flow/build/",
     "build-tests":"rollup -c tests.rollup.js -- test/index.js",
-    "lint":"eslint test --fix",
-    "headless":"phantomjs build/js/headless-test.js"
+    "lint":"eslint test --fix"
   },
   "repository":{  
     "type":"git",
-    "url":"https://github.com/h2oai/h2o-flow"
+    "url":"https://github.com/micahstubbs/torrent"
   },
   "keywords":[  
     "H2O",
-    "Machine Learning"
+    "Machine Learning",
+    "code",
+    "notebook",
+    "JavaScript",
+    "Scala",
+    "data science"
   ],
-  "author":"Prithvi Prabhu <prithvi@h2o.ai>",
+  "author":"@micahstubbs <micah.stubbs@gmail.com> (https://twitter.com/micahstubbs)",
   "contributors":[  
-    "Prithvi Prabhu <prithvi@h2o.ai>",
-    "Arno Candel <arno@h2o.ai>",
-    "Ray Peck <rpeck@h2o.ai>",
-    "Michal Malohlava <michal@h2o.ai>",
-    "Tom Kraljevic <tomk@h2o.ai>",
-    "Tomas Nykodym <tomas@h2o.ai>",
-    "Micah Stubbs <micah@h2o.ai>",
-    "Ivy Wang <ivy@h2o.ai>",
-    "Michal Kurka <michalk@h2o.ai>",
-    "Mateusz Dymczyk <mateusz@h2o.ai>",
-    "Jakub Hava <jakub@h2o.ai>",
-    "Justin Loyola <justin@h2o.ai>"
+    "@micahstubbs <micah.stubbs@gmail.com> (https://twitter.com/micahstubbs)",
   ],
   "license":"MIT",
   "bugs":{  
-    "url":"https://github.com/h2oai/h2o-flow/issues"
+    "url":"https://github.com/micahstubbs/torrent/issues"
   },
-  "homepage":"https://github.com/h2oai/h2o-flow",
+  "homepage":"https://github.com/micahstubbs/torrent",
   "devDependencies":{  
     "async":"~0.9.0",
     "babel-preset-es2015-rollup":"^1.1.1",
