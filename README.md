@@ -15,7 +15,7 @@
 - [ ] `npm run clone-h2o`
 - [ ] `npm run build-h2o`
 - [ ] `npm run start-h2o`
-- [ ] visit [localhost:54321](localhost:54321) in [Chrome](https://www.google.com/chrome/)
+- [ ] visit [http://localhost:54321](http://localhost:54321) in [Chrome](https://www.google.com/chrome/)
 
 ## user guide
 
