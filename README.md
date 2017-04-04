@@ -8,6 +8,15 @@
 
 **torrent** is a fork of the [h2o-flow](https://github.com/h2oai/h2o-flow) project
 
+## install
+
+- [ ] `git clone git@github.com:micahstubbs/torrent.git`
+- [ ] `cd torrent`
+- [ ] `npm run clone-h2o`
+- [ ] `npm run build-h2o`
+- [ ] `npm run start-h2o`
+- [ ] visit [localhost:54321](localhost:54321) in [Chrome](https://www.google.com/chrome/)
+
 ## user guide
 
 there is a nice [user guide](https://github.com/h2oai/h2o-3/blob/8858aac90dce771f9025b16948b675f92b542715/h2o-docs/src/product/flow/README.md) for **h2o-flow** housed over in the [h2o-3](https://github.com/h2oai/h2o-3) repo that describes many features also found in **torrent**
