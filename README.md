@@ -11,18 +11,10 @@
 ## install
 
 - [ ] `git clone git@github.com:micahstubbs/torrent.git`
-- [ ] `git clone git@github.com:h2oai/h2o-3.git`
-- [ ] verify that you have cloned both repositories in the same parent directory 
-
-```
-├── h2o-3
-└── torrent 
-```
-
-use the command `tree -L 1` to see the child directories inside your current working directory 
-
-- [ ] `cd torrent` 
+- [ ] `cd torrent`
+- [ ] `npm run clone-h2o`
 - [ ] `npm run build-h2o`
+- [ ] `npm run start-h2o`
 - [ ] visit [localhost:54321](localhost:54321) in [Chrome](https://www.google.com/chrome/)
 
 ## user guide

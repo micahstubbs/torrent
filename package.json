@@ -14,7 +14,9 @@
     "build": "gulp && rollup -c -- src/index.js && cp -r build/ ../../../h2o-3/h2o-web/src/main/resources/www/flow/ && cp -r build/ ../../../h2o-3/h2o-web/lib/h2o-flow/build/",
     "build-tests":"rollup -c tests.rollup.js -- test/index.js",
     "patch": "cp -r patch/h2o-3/ ../h2o-3/",
+    "clone-h2o": "cd .. && git clone git@github.com:h2oai/h2o-3.git",
     "build-h2o": "npm run patch && cd ../h2o-3/ && ./gradlew build -x test",
+    "start-h2o": "cd ../h2o-3/build/ && java -jar h2o.jar",
     "lint":"eslint test --fix"
   },
   "repository":{  
