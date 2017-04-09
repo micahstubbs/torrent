@@ -18,3 +18,4 @@ tests/nightwatch.json
 tests/example.js
 tests/reports/
 npm-debug.log
+vendor/h2oai/lightning.min.js

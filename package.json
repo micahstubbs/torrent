@@ -7,11 +7,12 @@
     "test":"test"
   },
   "scripts":{  
-    "start":"npm install && bower install && gulp",
+    "rawgit": "rm -rf vendor/h2oai && mkdir vendor/h2oai && cd vendor/h2oai && curl -O https://cdn.rawgit.com/h2oai/h2o-flow/6b3a83253c9487ee140c259de94c5213c40527c3/vendor/h2oai/lightning.min.js",
+    "start":"npm install && bower install && rawgit && gulp",
     "build-templates":"gulp",
     "build-js":"rollup -c  -- src/index.js && cp build/js/flow.js ../../../h2o-3/h2o-web/src/main/resources/www/flow/js/ && cp build/js/flow.js ../../../h2o-3/h2o-web/lib/h2o-flow/build/js/",
     "build-no-libs": "gulp build-templates build-styles && rollup -c -- src/index.js && cp -r build/ ../../../h2o-3/h2o-web/src/main/resources/www/flow/ && cp -r build/ ../../../h2o-3/h2o-web/lib/h2o-flow/build/",
-    "build": "gulp && rollup -c -- src/index.js && cp -r build/ ../../../h2o-3/h2o-web/src/main/resources/www/flow/ && cp -r build/ ../../../h2o-3/h2o-web/lib/h2o-flow/build/",
+    "build": "rawgit && gulp && rollup -c -- src/index.js && cp -r build/ ../../../h2o-3/h2o-web/src/main/resources/www/flow/ && cp -r build/ ../../../h2o-3/h2o-web/lib/h2o-flow/build/",
     "build-tests":"rollup -c tests.rollup.js -- test/index.js",
     "patch": "cp -r patch/h2o-3/ ../h2o-3/",
     "clone-h2o": "cd .. && git clone git@github.com:h2oai/h2o-3.git",
